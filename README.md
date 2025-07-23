@@ -1,4 +1,4 @@
-# [Frontend](https://frontend_study) &middot; [![Github license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/angela5825/frontend_study/LICENSE)
+# [Frontend](https://angela5825.github.io/frontend_study/) &middot; [![Github license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/angela5825/frontend_study/LICENSE)
 
 자바스크립트 기반 웹 서버 프로그래밍 풀스택 개발 과정
 
