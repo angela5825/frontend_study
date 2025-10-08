@@ -1,0 +1,107 @@
+import Welcome from "./Welcome";
+import Greeting from "./Greeting";
+import Counter from "./Counter";
+import Adder from "./Adder";
+
+import "./App.css";
+
+// const Greeting = ({ name }) => <h1>Hello, {name}님!</h1>;
+
+function BasicExpressions() {
+  const name = "John";
+  const age = 25;
+  const isAdmin = true;
+
+  return (
+    <div>
+      <p>Name : {name}</p>
+      <p>Age next year : {age + 1}</p>
+      <p>{name + "'s Pfofile"}</p>
+      <p>{`${name} is ${age} years old`}</p>
+      <p>Admin status : {String(isAdmin)}</p>
+    </div>
+  );
+}
+
+function ObjectArrayExpresions() {
+  const user = {
+    name: "Jane",
+    email: "jane@example.com",
+  };
+  const colors = ["red", "blue", "green"];
+
+  const numbers = [1, 2, 3, 4, 5];
+
+  return (
+    <div>
+      <p>
+        User : {user.name}({user.email})
+      </p>
+      <p>First Color : {colors[0]}</p>
+      <p>Color count : {colors.length}</p>
+      <p>Doubleds :{numbers.map((n) => n * 2).join(", ")} </p>
+      <p> Evens : {numbers.filter((n) => n % 2 === 0).join(", ")}</p>
+    </div>
+  );
+}
+
+function FunctionExpressions() {
+  const getGreeting = (name) => `Hello,${name}!`;
+
+  const formatDate = (date) => {
+    return date.toLocaleDateString();
+  };
+
+  const items = [
+    { id: 1, price: 10 },
+    { id: 2, price: 20 },
+  ];
+  const calculateTotal = (items) => {
+    return items.reduce((sum, item) => (sum += item.price), 0);
+  };
+
+  return (
+    <div>
+      <p>{getGreeting("Alice")}</p>
+      <p>{formatDate(new Date())}</p>
+      <p>Total : ${calculateTotal(items)}</p>
+      <p>
+        Good{" "}
+        {(() => {
+          const hours = new Date().getHours();
+          return hours < 12 ? "morning!" : "afternoon!";
+        })()}
+      </p>
+    </div>
+  );
+}
+function App() {
+  // const element = <h2>Hello, World</h2>;
+  // const element2 = (
+  //   <ul>
+  //     <li>A</li>
+  //     <li>B</li>
+  //     <li>C</li>
+  //   </ul>
+  // );
+
+  // console.log(element);
+  // console.log(element2);
+  return (
+    <>
+      {/* <FunctionExpressions></FunctionExpressions> */}
+      {/* <ObjectArrayExpresions></ObjectArrayExpresions> */}
+      {/* <BasicExpressions /> */}
+      {/* {element}
+      {element2}
+      <h1>JSX</h1> */}
+      {/* <Welcome name="Alice" a="hello" />
+      <Welcome name="Bob" a="hello" />
+      <Greeting name="Man" />
+      <Counter />
+      <Adder /> */}
+    </>
+  );
+}
+
+export default App;
