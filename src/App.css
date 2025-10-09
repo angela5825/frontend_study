@@ -2,6 +2,8 @@
   margin: 0;
 }
 
-.input-field {
-  background-color: aliceblue;
+#root button {
+  margin: 4px;
+  padding: 0.4em 0.8em;
+  background-color: #f0f0f0;
 }

@@ -1,25 +1,14 @@
-import SimpleCard from "./simpleCard";
-import withConditionalCard from "./withConditionalCard";
-import TestCard from "./TestCard";
-const ConditionalSimpleCard = withConditionalCard(SimpleCard);
-const ConditionalTestCard = withConditionalCard(TestCard);
-
-// 이렇게 하는 이유??
-
+import "./App.css";
+import Button from "./Button";
+import Input from "./Input";
 const App = () => {
   return (
     <>
-      <ConditionalSimpleCard
-        title="Active Card"
-        content="This card is active."
-        disabled={false}
-      />
-      <ConditionalSimpleCard
-        title="Diabled Card"
-        content="This card is disabled."
-        disabled={true}
-      />
-      <ConditionalTestCard subject="Test Subject" />
+      <Button name={"Home"} />
+      <Button name={"Store"} />
+      <Button name={"Contact"} />
+      <br />
+      <Input></Input>
     </>
   );
 };
