@@ -18,7 +18,12 @@ const App = () => {
       setYear(newYear);
     }
   };
-  // 나이가 표시되게  : 나이가 18세 이상만 넣을 수 있게 하기
+
+  // 아래 이름과 나이를 업데이트 하는 로직을 useReducer를 사용하여 작성하세요
+  // 순서 1 : initialState 작성
+  //     2 : useReducer 작성
+  // state 는 {name : '', year : '', warning : ''}
+  // action은 {type : 'SET_NAME' }, {type : 'SET_YEAR' }
 
   return (
     <div>
