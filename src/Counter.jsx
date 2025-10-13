@@ -1,47 +1,30 @@
-import { useReducer, useState } from "react";
+import { useRef, useState } from "react";
 
-// 현재 상태 변경 로직을 정의하는 함수
-
-function reducer(state, action) {
-  switch (action.type) {
-    case "INCREMENT":
-      return { count: state.count + 1 };
-
-    case "DECREMENT":
-      return { count: state.count - 1 };
-    case "RESET":
-      return { count: 0 };
-    default:
-      throw new Error("UNKNOWN ACTION");
-  }
-}
-
-// 초기 상태 값
-const initialState = {
-  count: 0,
-};
+// let countVar=0;
 
 function Counter() {
-  const [state, dispatch] = useReducer(reducer, initialState);
+  const [count1, setCount1] = useState(0);
+  const [count2, setCount2] = useState(0);
+  const refCount = useRef(0);
 
-  // const handleClick = () => {
-  //   setTimeout(() => {
-  //     setCount((prev) => prev + 1);
-  //   }, 1000);
-  // }; // 1초 전에 10번을 눌러도 이전 값을 참조하기 때문에 3-> 4 로 넘어가는 건 오직 3에서만 참조
-
-  const handleClick = () => {
-    setTimeout(() => {
-      dispatch({ type: "INCREMENT" });
-    }, 1000);
+  const incrementRef = () => {
+    refCount.current += 1;
+    // countVar++;
+    setCount1(refCount.current);
+    console.log("Ref Count : ", countVar);
+  };
+  const syncCounts = () => {
+    setCount1(refCount.current);
+    setCount2((prev) => prev + 1);
   };
   return (
-    <div>
-      <p>Count : {state.count}</p>
-      <button onClick={() => dispatch({ type: "INCREMENT" })}>+</button>
-      <button onClick={() => dispatch({ type: "DECREMENT" })}>-</button>
-      <button onClick={() => dispatch({ type: "RESET" })}>RESET</button>
-    </div>
+    <>
+      <h2> Counter Example</h2>
+      <p>Count 1 : {count1}</p>
+      <p>Count 2 : {count2}</p>
+      <button onClick={incrementRef}>useRef</button>
+      <button onClick={syncCounts}>useState</button>
+    </>
   );
 }
 
