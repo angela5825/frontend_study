@@ -1,14 +1,10 @@
 import { useReducer, useState } from "react";
 import "./App.css";
+import { userReducer, initialState } from "./userReducer";
 
 const App = () => {
-  // const [name, setName] = useState("");
-  // const [year, setYear] = useState("");
-  // const [warning, setWarning] = useState("");
-  // const handleNameChange = (newName) => {
-  //   const formattedName = newName.trim().toLowerCase();
-  //   setName(formattedName);
-  // };
+  const [state, dispatch] = useReducer(userReducer, initialState);
+
   const handleYearChange = (newYear) => {
     const age = new Date().getFullYear() - newYear;
     if (age < 18) {
@@ -19,45 +15,27 @@ const App = () => {
     }
   };
 
-  // 아래 이름과 나이를 업데이트 하는 로직을 useReducer를 사용하여 작성하세요
-  // 순서 1 : initialState 작성
-  //     2 : useReducer 작성
-  // state 는 {name : '', year : '', warning : ''}
-  // action은 {type : 'SET_NAME' }, {type : 'SET_YEAR' }
-const initialState={
-  name : '',
-  year : '',
-  warning: ''
-};
-const reducer=(state,action){
-  switch(action.type){
-    case "SET_NAME" : 
-    
-  }
-}
-const [name,dispatch]=useReducer(reducer_name,initialState);
-
   return (
     <div>
       <input
         type="text"
         placeholder="Enter Name"
-        value={name}
+        value={state.name}
         onChange={(e) => {
-          handleNameChange(e.target.value);
+          dispatch({ type: "SET_NAME", payload: e.target.value });
         }}
       />
       <input
         type="number"
         placeholder="Enter your Birth Year"
-        value={year}
+        value={state.year}
         onChange={(e) => {
-          handleYearChange(e.target.value);
+          dispatch({ type: "SET_YEAR", payload: e.target.value });
         }}
       />
-      {warning && <p style={{ color: "red" }}>{warning}</p>}
-      <p>Name : {name}</p>
-      <p>Year : {year}</p>
+      {state.warning && <p style={{ color: "red" }}>{state.warning}</p>}
+      <p>Name : {state.name}</p>
+      <p>Year : {state.year}</p>
     </div>
   );
 };
