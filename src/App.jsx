@@ -1,14 +1,14 @@
-import { useState } from "react";
+import { useReducer, useState } from "react";
 import "./App.css";
 
 const App = () => {
-  const [name, setName] = useState("");
-  const [year, setYear] = useState("");
-  const [warning, setWarning] = useState("");
-  const handleNameChange = (newName) => {
-    const formattedName = newName.trim().toLowerCase();
-    setName(formattedName);
-  };
+  // const [name, setName] = useState("");
+  // const [year, setYear] = useState("");
+  // const [warning, setWarning] = useState("");
+  // const handleNameChange = (newName) => {
+  //   const formattedName = newName.trim().toLowerCase();
+  //   setName(formattedName);
+  // };
   const handleYearChange = (newYear) => {
     const age = new Date().getFullYear() - newYear;
     if (age < 18) {
@@ -24,6 +24,18 @@ const App = () => {
   //     2 : useReducer 작성
   // state 는 {name : '', year : '', warning : ''}
   // action은 {type : 'SET_NAME' }, {type : 'SET_YEAR' }
+const initialState={
+  name : '',
+  year : '',
+  warning: ''
+};
+const reducer=(state,action){
+  switch(action.type){
+    case "SET_NAME" : 
+    
+  }
+}
+const [name,dispatch]=useReducer(reducer_name,initialState);
 
   return (
     <div>
