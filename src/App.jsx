@@ -1,29 +1,44 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import "./App.css";
-import ClassComp from "./ClassComp";
-import FuncComp from "./FuncComp";
+import { delay } from "./delay";
+
 const App = () => {
-  // 변수로 어떤 게 선택되었는 지 저장하는 변수를 선언
+  const [books, setBooks] = useState([]);
+  const [loading, setLoading] = useState(true); // 데이터를 잘 가지고 오는 지 체크용
 
-  const [selected, setSelected] = useState("");
+  useEffect(() => {
+    const fetchBooks = async () => {
+      try {
+        await delay(500);
+        const response = await fetch("/data/books.json");
+        const data = await response.json();
+        setBooks(data);
 
+        console.log("load Complete");
+      } catch (error) {
+        console.error("Failed to fetch books", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchBooks();
+  }, []);
+
+  if (loading) return <p>Loading...</p>;
   return (
     <>
-      {["", "ClassComp", "FuncComp"].map((option) => (
-        <label key={option}>
-          <input
-            type="radio"
-            value={option}
-            onChange={(e) => setSelected(e.target.value)}
-            checked={selected === option}
-          />
-          {option || "None"}
-        </label>
-      ))}
-      {/* 를 map을 이용해서 loop를 돌림 */}
-
-      {/* 공백이 아닐 경우 오른쪽에 */}
-      {selected && (selected === "ClassComp" ? <ClassComp /> : <FuncComp />)}
+      <div>
+        <h2>Book List</h2>
+        <ul>
+          {books.map((book) => {
+            return (
+              <li key={book.id}>
+                <strong>{book.title}</strong> by {book.author}
+              </li>
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 };
