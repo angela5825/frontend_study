@@ -1,9 +1,9 @@
 import Child2 from "./Child2";
-function Child1({ count, setCount }) {
+function Child1() {
   return (
     <div>
       <h2>Child 1</h2>
-      <Child2 count={count} setCount={setCount}></Child2>
+      <Child2></Child2>
     </div>
   );
 }
