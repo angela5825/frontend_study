@@ -1,17 +1,18 @@
-import { useEffect, useState } from "react";
+import { useMemo, useState } from "react";
 import "./App.css";
-import useWindowSize from "./hooks/useWindowSize";
-
+import Child from "./Count";
 const App = () => {
-  // 과제 1. useState 훅을 이용하여 count의 값을 증가시키고 감소시키는 기능을 작성하세요
-  // 과제 2. 화면의 사이즈가 변경되었을 때 변경된 가로 새로 크기를 화면에 표시되는 기능을 작성하세요
-  const { width, height } = useWindowSize();
+  const [count, setCount] = useState(0);
+  const [active, setActive] = useState(true);
 
   return (
     <>
-      <h2>화면의 사이즈 </h2>
-      <h3> 가로 크기 : {width}</h3>
-      <h3>세로 크기 : {height}</h3>
+      <h2>Parent</h2>
+      <button onClick={() => setCount(count + 1)}>Increase</button>
+      <button onClick={() => setActive((a) => !a)}>Change Name </button>
+      <p>Count : {count}</p>
+      <Child active={active} />
+      {/* 카운트 관련 버튼을 클릭하는데 child가 랜더링 된다. */}
     </>
   );
 };
