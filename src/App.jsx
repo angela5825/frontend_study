@@ -1,15 +1,22 @@
-import { CountProvider } from "./contexts/CountContext";
 import "./App.css";
+
+import { CountProvider } from "./contexts/CountContext";
 import Child1 from "./Child1";
+import Child3 from "./Child3";
+import { ToggleProvider } from "./contexts/ToggleContext";
 
 const App = () => {
   return (
-    <div>
+    <>
       <h2>App</h2>
       <CountProvider>
         <Child1 />
       </CountProvider>
-    </div>
+
+      <ToggleProvider>
+        <Child3 />
+      </ToggleProvider>
+    </>
   );
 };
 export default App;
