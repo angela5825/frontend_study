@@ -2,45 +2,51 @@ import "./App.css";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
+import Search from "./pages/Search";
+import User from "./pages/User";
 import { Link, Routes, Route, useNavigate } from "react-router-dom";
-
-/*
-BrowserRouter
-
-- HTML History API(pushState,replaceState,popState)를 사용하여
-브라우저의 주소를 관리하는 라우터
-- 페이지 새로고침 없이도 URL을 변경하고 이에 따라 컴포넌트를 랜더링할 수 있도록 하는 역할 
-*/
-
+import { useState } from "react";
 const App = () => {
   const navigate = useNavigate();
+
+  const [keyword, setKeyword] = useState("");
+
+  const navTo = (path) => {
+    navigate(path);
+  };
   return (
     <>
+      <input
+        type="text"
+        value={keyword}
+        onChange={(e) => setKeyword(e.target.value)}
+      />
       <button
         onClick={() => {
-          navigate("/");
+          navTo("/");
         }}
       >
         Home
       </button>
       <button
         onClick={() => {
-          navigate("/about");
+          navTo("/user/admin");
         }}
       >
-        About
+        User
       </button>
       <button
         onClick={() => {
-          navigate("/contact");
+          navTo(`/search?keyword=${keyword}`);
         }}
       >
-        Contact
+        Search
       </button>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/user/:id" element={<User />} />
+        <Route path="/search" element={<Search />} />
+        <Route path="*" element={<h2>Page Not Found</h2>} />
       </Routes>
     </>
 
