@@ -2,7 +2,7 @@ import "./App.css";
 import About from "./pages/About";
 import Contact from "./pages/Contact";
 import Home from "./pages/Home";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useNavigate } from "react-router-dom";
 
 /*
 BrowserRouter
@@ -13,13 +13,30 @@ BrowserRouter
 */
 
 const App = () => {
+  const navigate = useNavigate();
   return (
     <>
-      <nav>
-        <Link to={"/"}>Home</Link>
-        <Link to={"/about"}>About</Link>
-        <Link to={"/contact"}>Contact</Link>
-      </nav>
+      <button
+        onClick={() => {
+          navigate("/");
+        }}
+      >
+        Home
+      </button>
+      <button
+        onClick={() => {
+          navigate("/about");
+        }}
+      >
+        About
+      </button>
+      <button
+        onClick={() => {
+          navigate("/contact");
+        }}
+      >
+        Contact
+      </button>
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/about" element={<About />} />
