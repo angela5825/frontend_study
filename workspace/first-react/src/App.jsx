@@ -1,11 +1,9 @@
 import "./App.css";
-
-import CustomVideoPlayer from "./CustomVideoPlayer.jsx";
-
+import PagingPosts from "./PagingPosts";
 const App = () => {
   return (
     <>
-      <CustomVideoPlayer />
+      <PagingPosts />
     </>
   );
 };
